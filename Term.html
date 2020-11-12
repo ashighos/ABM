@@ -9,8 +9,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <title>Accolades and Awards-ABM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .fa {
@@ -40,6 +38,57 @@
             background: #125688;
             color: white;
         }
+
+        .blink_text {
+
+            animation: 1s blinker linear infinite;
+            -webkit-animation: 1s blinker linear infinite;
+            -moz-animation: 1s blinker linear infinite;
+
+            color: magenta;
+        }
+
+        @-moz-keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1.0;
+            }
+        }
+
+        @-webkit-keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1.0;
+            }
+        }
+
+        @keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1.0;
+            }
+        }
     </style>
     <title>Alliance Bowling Machine, the need of Batsman</title>
 </head>
@@ -58,14 +107,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item ">
+                <li class="nav-item active">
                     <a class="nav-link" href="/ABM/index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/ABM/Aboutus.html">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/ABM/Product.html" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="/ABM/product.html" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Products
                     </a>
@@ -80,7 +129,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="/ABM/contact.html">Contact ABM</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="/ABM/gallary.html">Gallery</a>
                 </li>
             </ul>
@@ -93,46 +142,76 @@
                 <button class="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SignUp</button>
             </div>
         </div>
+
     </nav>
-    <div class="container">
-        <div class="card-deck">
-            <div class="card" style="width: 18rem;">
-                <img src="Images/Product_SW10.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Single Wheel</h5>
-                    <p class="card-text">Single Wheel Machine Demonstrating All the Features</p>
-                    <a href="https://youtu.be/9Xl04lDDOlM" class="btn btn-primary">Watch Demo</a>
+    <!-- Button trigger modal -->
+
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to ABM</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="Images/ABM_COIMB2.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Double Wheel</h5>
-                    <p class="card-text">Double Wheel Machine for Professional/Expert Level</p>
-                    <a href="https://www.youtube.com/playlist?list=PL2ckW2Whw3XM9lXwc3SzguI7b7zCga0Nc"
-                        class="btn btn-primary">Demonstarting All the Feature</a>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
                 </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="Images/SWDEMO_PSPORTS.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Demos at Bangalore</h5>
-                    <p class="card-text">Demonstration of Bowling Machine at Bangalore</p>
-                    <a href="https://www.jiocloud.com/s/?t=8c92ef2c38c545bd8ee0b3"
-                        class="btn btn-primary">Demonstration@Whitefield</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="Images/WithBallFeeder.jpg" class="card-img-top" alt="Ball Feeder on SingleWheel">
-                <div class="card-body">
-                    <h5 class="card-title">Single Wheel WithBallFeeder</h5>
-                    <p class="card-text">Single Wheel Machine with varying time Ball Feeder</p>
-                    <a href="https://www.jiocloud.com/s/?t=a88348083c0d49168e95a3" class="btn btn-primary">Watch
-                        BallFeeder in Action@ABM SW10</a>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>
     </div>
+    <!-- Button trigger modal -->
+
+    <!-- SignupModal -->
+    <div ng-if="UserInfo.approvedTermsAndConditions || !UserInfo.isAuthenticated">
+	<ncy-breadcrumb></ncy-breadcrumb>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<form name="tandc" ng-submit="approveTandC()">
+				<div class="panel panel-default" style="margin-top:20px;">
+					<div class="panel-body" style="max-height:600px; overflow-y:scroll; background-color:white;">
+						<div style="text-align:center;">
+							<h1>Terms and Conditions</h1>
+							<p>
+								This is where your terms and conditions content will go.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div style="text-align:center;" ng-if="settings.Authentication.RequireTermsAndConditions && !UserInfo.approvedTermsAndConditions && UserInfo.isAuthenticated">
+					<button style="margin:20px;" class="btn btn-primary" type="submit">Agree to Terms and Conditions</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
     <footer class="container">
         <p class="float-right"><a href="/ABM/index.html">Home</a></p>
         <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.html"> Privacy & Terms</a></p>
