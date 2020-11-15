@@ -82,10 +82,7 @@
                     <a class="nav-link" href="/ABM/gallary.html">Gallery</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <!-- <form class="form-inline my-2 my-lg-0"> -->
             <div class="mx-2">
                 <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">login</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SignUp</button>
@@ -107,22 +104,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/ABM/Login.php" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="lexampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
+                                else. Login to get exciting offers and information</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="lexampleInputPassword1">
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
+                        <!-- <div class="form-group form-check"> -->
+                            <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+                            <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+                        <!-- </div> -->
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
@@ -146,21 +143,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/ABM/UserRegistration.php" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
                             <label for="cexampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="cexampleInputPassword1">
+                            <input type="password" class="form-control" id="cexampleInputPassword1" name="cexampleInputPassword1">
                         </div>
                         <div class="form-group">
                             <label for="cexampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" id="cexampleInputPassword1">
+                            <input type="password" class="form-control" id="cexampleInputPassword2" name="cexampleInputPassword2">
+                        </div>
+						<div class="form-group">
+                            <label for="cexampleInputPassword1">Contact Number</label>
+                            <input type="text" class="form-control" id="ccontact" name="ccontact">
                         </div>
                         <!-- <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -184,7 +185,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="Images/370.jpg" class="d-block w-100" alt="ABM Brochure">
+                <img src="Images/DeepawliFlyer.png" class="d-block w-100" alt="ABM Brochure">
                 <div class="carousel-caption d-none d-md-block">
                     <h5></h5>
                     <p></p>
