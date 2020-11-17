@@ -1,11 +1,20 @@
 <?php 
 session_start();
 $sessionset = "false";
-$uname = $_SESSION['username'];
+$uname = "";
+
 if (isset($_SESSION['username']))
 {
-	//echo "<script>alert('Logged in user is $uname'); </script>"; 
+	$uname=$_SESSION['username'];
+	 
 	$sessionset = "true";
+	
+}
+else
+{
+	$sessionset = "false";
+	$uname = "";
+	
 }
 ?>
 
@@ -68,36 +77,45 @@ if (isset($_SESSION['username']))
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/ABM/index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/ABM/index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ABM/Aboutus.html">About</a>
+                    <a class="nav-link" href="/ABM/Aboutus.php">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/ABM/product.html" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="/ABM/product.php" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Products
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ABM/SW.html">Single Wheel Bowling Machines</a>
-                        <a class="dropdown-item" href="/ABM/DW.html">Double Wheel Bowling Machines</a>
+                        <a class="dropdown-item" href="/ABM/SW.php">Single Wheel Bowling Machines</a>
+                        <a class="dropdown-item" href="/ABM/DW.php">Double Wheel Bowling Machines</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/ABM/BF.html">Ball Feeders</a>
-                        <a class="dropdown-item" href="/ABM/Access.html">Dimple Balls</a>
+                        <a class="dropdown-item" href="/ABM/BF.php">Ball Feeders</a>
+                        <a class="dropdown-item" href="/ABM/Access.php">Dimple Balls</a>
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/ABM/contact.html">Contact ABM</a>
+                    <a class="nav-link" href="/ABM/contact.php">Contact ABM</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/ABM/gallary.html">Gallery</a>
+                    <a class="nav-link" href="/ABM/gallary.php">Gallery</a>
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <div class="mx-2" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
+            <div class="mx-2" id = "Loginsignup" <?php if ($sessionset=='true'){?>style="display:none"<?php } ?>>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">login</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SignUp</button>
             </div>
+			
+			<div class="mx-2" id="Loggedin" <?php if ($sessionset=='false'){?>style="display:none"<?php } ?>>
+                <p class="text-primary" > Welcome <?php echo $uname ?> </p>
+				<a href="/ABM/logout.php" > LOGOUT </a>
+                
+            </div>
+			
+			
+			
         </div>
 
     </nav>
@@ -230,8 +248,8 @@ if (isset($_SESSION['username']))
     </div>
 
     <footer class="container">
-        <p class="float-right"><a href="/ABM/index.html">Home</a></p>
-        <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.html"> Privacy & Terms</a></p>
+        <p class="float-right"><a href="/ABM/index.php">Home</a></p>
+        <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.php"> Privacy & Terms</a></p>
     </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 

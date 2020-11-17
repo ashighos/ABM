@@ -1,14 +1,12 @@
 <?php 
 session_start();
-$sessionset = "false";
-$uname = $_SESSION['username'];
-if (isset($_SESSION['username']))
+if (!isset(_SESSION['username'])
 {
-	//echo "<script>alert('Logged in user is $uname'); </script>"; 
-	$sessionset = "true";
+	echo "<script>
+	window.location.href='/ABM/index.html';
+	</script>";
 }
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -51,9 +49,11 @@ if (isset($_SESSION['username']))
         }
     </style>
     <title>Alliance Bowling Machine, the need of Batsman</title>
+	
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Alliance Bowling Machine</a>
         <a href="https://www.facebook.com/Alliance-Bowling-Machine-109188480622182/?view_public_for=109188480622182"
@@ -94,44 +94,23 @@ if (isset($_SESSION['username']))
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <div class="mx-2" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">login</button>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SignUp</button>
+			
+            <div class="mx-2" >
+                <p class="text-primary"> Welcome <?php echo $_SESSION['username'] ?> </p>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#logout">logout</button>
+                
             </div>
         </div>
 
     </nav>
     <!-- Button trigger modal -->
-
-
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
+	<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login to ABM</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                
                 <div class="modal-body">
-                    <form action="/ABM/Login.php" method="post">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="lexampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else. Login to get exciting offers and information</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="lexampleInputPassword1">
-                        </div>
-                        <!-- <div class="form-group form-check"> -->
-                            <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-                            <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
-                        <!-- </div> -->
-                        <button type="submit" class="btn btn-primary">Login</button>
+                    <form action="/ABM/logout.php" method="post">
+                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -141,53 +120,13 @@ if (isset($_SESSION['username']))
             </div>
         </div>
     </div>
+
+    <!-- Login Modal -->
+    
     <!-- Button trigger modal -->
 
     <!-- SignupModal -->
-    <div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="SignUpModalLabel">Please SignUp at ABM</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/ABM/UserRegistration.php" method="post">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="cexampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="cexampleInputPassword1" name="cexampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <label for="cexampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" id="cexampleInputPassword2" name="cexampleInputPassword2">
-                        </div>
-						<div class="form-group">
-                            <label for="cexampleInputPassword1">Contact Number</label>
-                            <input type="text" class="form-control" id="ccontact" name="ccontact">
-                        </div>
-                        <!-- <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div> -->
-                        <button type="submit" class="btn btn-primary">Create Account</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>

@@ -9,11 +9,11 @@ $pwd1 = test_input($_POST['cexampleInputPassword2']);
 $contact = test_input($_POST['ccontact']);
 }
 if ($pwd != $pwd1) {
-  echo "<script>alert('Please make sure that Password entered are same');window.location.href='/ABM/index.html';</script>";
+  echo "<script>alert('Please make sure that Password entered are same');window.location.href='/ABM/index.php';</script>";
   exit();
 } 
  if (strlen($contact) <  "10" ) {
-   echo "<script>alert('Please make sure that Contact Number is correct');window.location.href='/ABM/index.html';</script>";
+   echo "<script>alert('Please make sure that Contact Number is correct');window.location.href='/ABM/index.php';</script>";
    exit();
  }
  $getuserQuery = "select * from userdetail where UNAME='$email'";
@@ -32,7 +32,7 @@ $query = "INSERT INTO `userdetail`(`UNAME`, `PWD`, `CONTACT`,`LASTUPDATE`) VALUE
 
 mysqli_query($con,$query);
 echo "<script>alert('User Registration at ABM is successful !!');
-window.location.href='/ABM/index.html';
+window.location.href='/ABM/index.php';
 </script>";
 //header('location:/ABM/index.html')
  function test_input($data) {

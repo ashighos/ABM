@@ -1,14 +1,22 @@
 <?php 
 session_start();
 $sessionset = "false";
-$uname = $_SESSION['username'];
+$uname = "";
+
 if (isset($_SESSION['username']))
 {
-	//echo "<script>alert('Logged in user is $uname'); </script>"; 
+	$uname=$_SESSION['username'];
+	 
 	$sessionset = "true";
+	
+}
+else
+{
+	$sessionset = "false";
+	$uname = "";
+	
 }
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -49,6 +57,57 @@ if (isset($_SESSION['username']))
             background: #125688;
             color: white;
         }
+
+        .blink_text {
+
+            animation: 1s blinker linear infinite;
+            -webkit-animation: 1s blinker linear infinite;
+            -moz-animation: 1s blinker linear infinite;
+
+            color: red;
+        }
+
+        @-moz-keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1.0;
+            }
+        }
+
+        @-webkit-keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1.0;
+            }
+        }
+
+        @keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1.0;
+            }
+        }
     </style>
     <title>Alliance Bowling Machine, the need of Batsman</title>
 </head>
@@ -68,35 +127,41 @@ if (isset($_SESSION['username']))
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/ABM/index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/ABM/index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ABM/Aboutus.html">About</a>
+                    <a class="nav-link" href="/ABM/Aboutus.php">About</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/ABM/product.html" id="navbarDropdown" role="button"
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="/ABM/product.php" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Products
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ABM/SW.html">Single Wheel Bowling Machines</a>
-                        <a class="dropdown-item" href="/ABM/DW.html">Double Wheel Bowling Machines</a>
+                        <a class="dropdown-item" href="/ABM/SW.php">Single Wheel Bowling Machines</a>
+                        <a class="dropdown-item" href="/ABM/DW.php">Double Wheel Bowling Machines</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/ABM/BF.html">Ball Feeders</a>
-                        <a class="dropdown-item" href="/ABM/Access.html">Dimple Balls</a>
+                        <a class="dropdown-item" href="/ABM/BF.php">Ball Feeders</a>
+                        <a class="dropdown-item" href="/ABM/Access.php">Dimple Balls</a>
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/ABM/contact.html">Contact ABM</a>
+                    <a class="nav-link" href="/ABM/contact.php">Contact ABM</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/ABM/gallary.html">Gallery</a>
+                    <a class="nav-link" href="/ABM/gallary.php">Gallery</a>
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <div class="mx-2" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
+             <div class="mx-2" id = "Loginsignup" <?php if ($sessionset=='true'){?>style="display:none"<?php } ?>>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">login</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SignUp</button>
+            </div>
+			
+			<div class="mx-2" id="Loggedin" <?php if ($sessionset=='false'){?>style="display:none"<?php } ?>>
+                <p class="text-primary" > Welcome <?php echo $uname ?> </p>
+				<a href="/ABM/logout.php" > LOGOUT </a>
+                
             </div>
         </div>
 
@@ -188,50 +253,41 @@ if (isset($_SESSION['username']))
             </div>
         </div>
     </div>
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="Images/DeepawliFlyer.png" class="d-block w-100" alt="ABM Brochure">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5></h5>
-                    <p></p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="Images/DW.png" class="d-block w-100" alt="ABM DW">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>DoubleWheel BowlingMachine</h5>
-                    <p>For Professionals</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="Images/SW.png" class="d-block w-100" alt="ABM SW">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Single Wheel Bowling Machines</h5>
-                    <p>For beginers/Intermediate skill level</p>
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col mb-2">
+            <div class="card h-100">
+				
+                <img src="Images/BSW.png" class="card-img-top" alt="ABM SW 10">
+                <div class="card-body">
+                    <h5 class="card-title">ABM Ball Feeder</h5>
+                    <p class="card-text">Ball Feeders are optional Accessories, which lets an individual batsman practice without 
+					the need of some one feeding the balls to bowling machines. Balls are delivered to the bowling machine at configured intervals ( in Seconds )
+					as per the batsman's convenience. This is very helpful if you practice alone or want to check your preparedness for the strike.
+                    </p>
+                    <span class="blink_text"><b>Features</b></span>
+                    <!-- <h5 class="text-danger" >Features</h5> -->
+                    <p class="text-primary">* <b>Configured Interval Deliveries ( Ranges from 5 .. 12 Sec ) </b></p>
+                    <p class="text-primary">* <b>Robust and easy maintanable </b></p>
+                    <p class="text-primary">* <b>Can be operated through mobile Power banks </b></p>
+                    <p class="text-primary">* <b>Fits All ABM models </b></p>
+                    <p class="text-primary">* <b>Customizable to suit the number of balls within range </b></p>
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <!--Facebook-->
+		<div class="card h-100">
+			<div class="embed-responsive embed-responsive-16by9">
+			<!--<iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=llzaYPEHCTI" allowfullscreen></iframe>-->
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/llzaYPEHCTI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<!-- width="300" height="315" -->
+			</div>
+		</div>
+        
 
     </div>
 
     <footer class="container">
-        <p class="float-right"><a href="/ABM/index.html">Home</a></p>
-        <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.html"> Privacy & Terms</a></p>
+        <p class="float-right"><a href="/ABM/index.php">Home</a></p>
+        <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.php"> Privacy & Terms</a></p>
     </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 

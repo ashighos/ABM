@@ -1,14 +1,22 @@
 <?php 
 session_start();
 $sessionset = "false";
-$uname = $_SESSION['username'];
+$uname = "";
+
 if (isset($_SESSION['username']))
 {
-	//echo "<script>alert('Logged in user is $uname'); </script>"; 
+	$uname=$_SESSION['username'];
+	 
 	$sessionset = "true";
+	
+}
+else
+{
+	$sessionset = "false";
+	$uname = "";
+	
 }
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -20,6 +28,8 @@ if (isset($_SESSION['username']))
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Accolades and Awards-ABM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .fa {
@@ -67,45 +77,46 @@ if (isset($_SESSION['username']))
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/ABM/index.html">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/ABM/index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ABM/Aboutus.html">About</a>
+                    <a class="nav-link" href="/ABM/Aboutus.php">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/ABM/product.html" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="/ABM/Product.php" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Products
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ABM/SW.html">Single Wheel Bowling Machines</a>
-                        <a class="dropdown-item" href="/ABM/DW.html">Double Wheel Bowling Machines</a>
+                        <a class="dropdown-item" href="/ABM/SW.php">Single Wheel Bowling Machines</a>
+                        <a class="dropdown-item" href="/ABM/DW.php">Double Wheel Bowling Machines</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/ABM/BF.html">Ball Feeders</a>
-                        <a class="dropdown-item" href="/ABM/Access.html">Dimple Balls</a>
+                        <a class="dropdown-item" href="/ABM/BF.php">Ball Feeders</a>
+                        <a class="dropdown-item" href="/ABM/Access.php">Dimple Balls</a>
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/ABM/contact.html">Contact ABM</a>
+                    <a class="nav-link" href="/ABM/contact.php">Contact ABM</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="/ABM/gallary.html">Gallery</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/ABM/gallary.php">Gallery</a>
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <div class="mx-2" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
+            <div class="mx-2" id = "Loginsignup" <?php if ($sessionset=='true'){?>style="display:none"<?php } ?>>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">login</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SignUp</button>
             </div>
+			
+			<div class="mx-2" id="Loggedin" <?php if ($sessionset=='false'){?>style="display:none"<?php } ?>>
+                <p class="text-primary" > Welcome <?php echo $uname ?> </p>
+				<a href="/ABM/logout.php" > LOGOUT </a>
+                
+            </div>
         </div>
-
     </nav>
-    <!-- Button trigger modal -->
-
-
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
+	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,22 +126,19 @@ if (isset($_SESSION['username']))
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/ABM/Login.php" method="post">
+                    <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="lexampleInputEmail1"
+                            <input type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else. Login to get exciting offers and information</small>
+                                else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="lexampleInputPassword1">
+                            <input type="password" class="form-control" id="exampleInputPassword1">
                         </div>
-                        <!-- <div class="form-group form-check"> -->
-                            <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-                            <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
-                        <!-- </div> -->
+                        
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
@@ -144,7 +152,7 @@ if (isset($_SESSION['username']))
     <!-- Button trigger modal -->
 
     <!-- SignupModal -->
-    <div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true" <?php if ($sessionset==true){?>style="display:none"<?php } ?>>
+    <div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -154,30 +162,27 @@ if (isset($_SESSION['username']))
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/ABM/UserRegistration.php" method="post">
+                    <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1"
+                            <input type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
                             <label for="cexampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="cexampleInputPassword1" name="cexampleInputPassword1">
+                            <input type="password" class="form-control" id="cexampleInputPassword1">
                         </div>
                         <div class="form-group">
                             <label for="cexampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" id="cexampleInputPassword2" name="cexampleInputPassword2">
-                        </div>
-						<div class="form-group">
-                            <label for="cexampleInputPassword1">Contact Number</label>
-                            <input type="text" class="form-control" id="ccontact" name="ccontact">
+                            <input type="password" class="form-control" id="cexampleInputPassword2">
                         </div>
                         <!-- <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div> -->
+						<!-- <form action="test.php" method="POST"> -->
                         <button type="submit" class="btn btn-primary">Create Account</button>
                     </form>
                 </div>
@@ -188,50 +193,48 @@ if (isset($_SESSION['username']))
             </div>
         </div>
     </div>
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="Images/DeepawliFlyer.png" class="d-block w-100" alt="ABM Brochure">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5></h5>
-                    <p></p>
+    <div class="container">
+        <div class="card-deck">
+            <div class="card" style="width: 18rem;">
+                <img src="Images/Product_SW10.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Single Wheel</h5>
+                    <p class="card-text">Single Wheel Machine Demonstrating All the Features</p>
+                    <a href="https://youtu.be/9Xl04lDDOlM" class="btn btn-primary">Watch Demo</a>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="Images/DW.png" class="d-block w-100" alt="ABM DW">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>DoubleWheel BowlingMachine</h5>
-                    <p>For Professionals</p>
+            <div class="card" style="width: 18rem;">
+                <img src="Images/ABM_COIMB2.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Double Wheel</h5>
+                    <p class="card-text">Double Wheel Machine for Professional/Expert Level</p>
+                    <a href="https://www.youtube.com/playlist?list=PL2ckW2Whw3XM9lXwc3SzguI7b7zCga0Nc"
+                        class="btn btn-primary">Demonstarting All the Feature</a>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="Images/SW.png" class="d-block w-100" alt="ABM SW">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Single Wheel Bowling Machines</h5>
-                    <p>For beginers/Intermediate skill level</p>
+            <div class="card" style="width: 18rem;">
+                <img src="Images/SWDEMO_PSPORTS.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Demos at Bangalore</h5>
+                    <p class="card-text">Demonstration of Bowling Machine at Bangalore</p>
+                    <a href="https://www.jiocloud.com/s/?t=8c92ef2c38c545bd8ee0b3"
+                        class="btn btn-primary">Demonstration@Whitefield</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="Images/WithBallFeeder.jpg" class="card-img-top" alt="Ball Feeder on SingleWheel">
+                <div class="card-body">
+                    <h5 class="card-title">Single Wheel WithBallFeeder</h5>
+                    <p class="card-text">Single Wheel Machine with varying time Ball Feeder</p>
+                    <a href="https://www.jiocloud.com/s/?t=a88348083c0d49168e95a3" class="btn btn-primary">Watch
+                        BallFeeder in Action@ABM SW10</a>
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <!--Facebook-->
-
     </div>
-
     <footer class="container">
-        <p class="float-right"><a href="/ABM/index.html">Home</a></p>
-        <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.html"> Privacy & Terms</a></p>
+        <p class="float-right"><a href="/ABM/index.php">Home</a></p>
+        <p>@ 2020-2022, alliancebowlingmachine, co<a href="/ABM/Term.php"> Privacy & Terms</a></p>
     </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 
